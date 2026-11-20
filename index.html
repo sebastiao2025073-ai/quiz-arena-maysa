@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101322">
+  <title>Quiz Arena | Maysa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">Q</span><span>quiz<span class="brand-light">arena</span><small>INTERACTIVE LEARNING</small></span></a>
+    <div class="top-actions"><span class="status-dot"></span><span class="status-text" id="connectionStatus">Modo demonstração</span><button class="avatar" aria-label="Professora Maysa">M</button></div>
+  </header>
+
+  <main class="shell">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">PAINEL DA PROFESSORA</p>
+        <h1>Olá, Maysa <span class="wave">✦</span></h1>
+        <p class="muted">Transforme conhecimento em uma experiência divertida.</p>
+      </div>
+      <button class="primary-button" id="newQuizBtn"><span>＋</span> Criar novo quiz</button>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card"><div class="stat-icon purple">▤</div><div><p>Quizzes criados</p><strong id="quizCount">0</strong></div><span class="stat-note">na plataforma</span></article>
+      <article class="stat-card"><div class="stat-icon blue">◎</div><div><p>Participantes</p><strong id="participantCount">0</strong></div><span class="stat-note">nesta sessão</span></article>
+      <article class="stat-card"><div class="stat-icon green">↗</div><div><p>Respostas</p><strong id="answerCount">0</strong></div><span class="stat-note">recebidas</span></article>
+    </section>
+
+    <section class="content-grid">
+      <div class="main-column">
+        <div class="section-heading"><div><p class="eyebrow">SUA BIBLIOTECA</p><h2>Meus quizzes</h2></div><span class="count-pill" id="libraryCount">0 quizzes</span></div>
+        <div id="quizList" class="quiz-list">
+          <div class="empty-state"><div class="empty-icon">✧</div><h3>Seu primeiro quiz começa aqui</h3><p>Crie perguntas, compartilhe o QR Code e acompanhe a disputa em tempo real.</p><button class="text-button" id="emptyCreateBtn">＋ Criar meu primeiro quiz</button></div>
+        </div>
+      </div>
+
+      <aside class="side-column">
+        <div class="side-card live-card">
+          <div class="side-card-head"><span class="live-indicator"></span><span>PAINEL AO VIVO</span><span class="live-tag">LIVE</span></div>
+          <div class="live-placeholder"><div class="pulse-ring">↗</div><h3>O ranking aparece aqui</h3><p>Quando uma atividade estiver acontecendo, você poderá acompanhar os participantes e as pontuações.</p></div>
+          <div class="side-footer"><span>Atualização em tempo real</span><span>●</span></div>
+        </div>
+        <div class="tip-card"><span class="tip-spark">✦</span><div><strong>Dica para começar</strong><p>Monte de 5 a 10 perguntas curtas para manter a turma engajada.</p></div></div>
+      </aside>
+    </section>
+    <footer>QUIZ ARENA <span>•</span> Feito para aprender jogando</footer>
+  </main>
+
+  <div class="modal-backdrop" id="quizModal" aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header"><div><p class="eyebrow">NOVA EXPERIÊNCIA</p><h2 id="modalTitle">Criar quiz</h2></div><button class="icon-button" id="closeModal" aria-label="Fechar">×</button></div>
+      <form id="quizForm">
+        <label for="quizTitle">Nome do quiz</label><input id="quizTitle" maxlength="70" placeholder="Ex.: Revisão de História" required>
+        <label for="quizDescription">Descrição <span class="optional">OPCIONAL</span></label><textarea id="quizDescription" rows="2" maxlength="180" placeholder="Uma breve apresentação para os participantes"></textarea>
+        <div class="modal-actions"><button type="button" class="secondary-button" id="cancelModal">Cancelar</button><button type="submit" class="primary-button">Criar quiz <span>→</span></button></div>
+        <p class="form-message" id="formMessage" role="status"></p>
+      </form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>
